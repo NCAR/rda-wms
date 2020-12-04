@@ -177,7 +177,7 @@ std::string build_layer_cache(std::string layer_name)
     if (lparts.size() > 4) {
 	layer_time=lparts[4];
     }
-    MySQL::LocalQuery query("select i.byte_offset,i.byte_length,i.valid_date,f.format from IGrML.`ds"+dsnum2+"_inventory_"+lparts[3]+"` as i left join WGrML.ds"+dsnum2+"_webfiles as w on w.code = i.webID_code left join WGrML.formats as f on f.code = w.format_code where gridDefinition_code = "+lparts[0]+" and timeRange_code = "+lparts[1]+" and level_code = "+lparts[2]+" and webID = '"+resource+"'");
+    MySQL::LocalQuery query("select i.byte_offset,i.byte_length,i.valid_date,f.format from IGrML.`ds"+dsnum2+"_inventory_"+lparts[3]+"` as i left join WGrML.ds"+dsnum2+"_webfiles2 as w on w.code = i.webID_code left join WGrML.formats as f on f.code = w.format_code where gridDefinition_code = "+lparts[0]+" and timeRange_code = "+lparts[1]+" and level_code = "+lparts[2]+" and webID = '"+resource+"'");
     if (query.submit(server) == 0) {
 	if (query.num_rows() == 0) {
 	  print_exception_report("Specified layer name is invalid","LayerNotDefined");
